@@ -83,7 +83,9 @@ def playRockPaperScissors():
 
     #If wrong option is chosen
     else:
-        print(f"You chose: {playerMove}, which is not valid.")
+        print(f"You chose: {playerMove}, which is not valid. Please choose either 'rock', 'paper' or 'scissors'.")
+        print("Here is a redo of this round:")
+        playRockPaperScissors()
 
 
 while numOfRounds != roundsPlayed:
@@ -92,7 +94,7 @@ while numOfRounds != roundsPlayed:
     roundsPlayed += 1
 
 if playerScore == computerScore:
-    input("\nThe scores are tied! Are you ready for the tie breaking round? ")
+    input(f"\nThe scores are tied at {computerScore} for the computer and {playerScore} for you! Are you ready for the tie breaking round? ")
     playRockPaperScissors()
 
 if playerScore < computerScore:
