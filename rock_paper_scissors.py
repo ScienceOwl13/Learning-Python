@@ -1,3 +1,7 @@
+#Have it so that the if it's a tie breaking round, the game uses a different function, so that if you put in a unsupported option it will re-do the match in the tie breaking round format.
+#Currently, the tieBreakingRound() function doesn't do anything, it needs to include everything that is in playRockPaperScissors().
+#Figuire out a way to enable/disable isTieBreakingRound, so if that's true, it will reroute the error messages from normal to the tie breaking round version.
+
 import random
 from time import sleep
 
@@ -10,11 +14,14 @@ roundsPlayed = 0
 playerScore = 0
 computerScore = 0
 
+isTieBreakingRound = bool
+
 
 def playRockPaperScissors():
     
     global playerScore
     global computerScore
+    global isTieBreakingRound
 
         #Chooses a number between 1 and 3. 1 is rock, 2 is paper, 3 is scissors.
     computerMove = random.randint(1,3)
@@ -81,12 +88,24 @@ def playRockPaperScissors():
         print("Redoing this match.")
         playRockPaperScissors()
 
-    #If wrong option is chosen
+        #If wrong option is chosen and it's the tie-breaking round
+    elif playerMove != "rock" or "paper" or "scissors" and isTieBreakingRound == True:
+        TieBreakingRound()
+
+        #If wrong option is chosen
     else:
         print(f"You chose: {playerMove}, which is not valid. Please choose either 'rock', 'paper' or 'scissors'.")
         print("Here is a redo of this round:")
         playRockPaperScissors()
 
+def TieBreakingRound():
+    input(f"\nThe scores are tied at {computerScore} for the computer and {playerScore} for you! Are you ready for the tie breaking round? ")
+
+
+if numOfRounds == 0:
+    print(f"You have selected to play 0 rounds. Quitting the game.")
+    sleep(3)
+    quit()
 
 while numOfRounds != roundsPlayed:
 
@@ -94,8 +113,9 @@ while numOfRounds != roundsPlayed:
     roundsPlayed += 1
 
 if playerScore == computerScore:
-    input(f"\nThe scores are tied at {computerScore} for the computer and {playerScore} for you! Are you ready for the tie breaking round? ")
-    playRockPaperScissors()
+    isTieBreakingRound = True
+    TieBreakingRound()
+    
 
 if playerScore < computerScore:
     print(f"\nYou lost. The computer won. The score was {computerScore} - {playerScore} for the computer.")
