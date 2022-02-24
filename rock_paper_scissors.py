@@ -1,7 +1,3 @@
-#Have it so that the if it's a tie breaking round, the game uses a different function, so that if you put in a unsupported option it will re-do the match in the tie breaking round format.
-#Currently, the tieBreakingRound() function doesn't do anything, it needs to include everything that is in playRockPaperScissors().
-#Figuire out a way to enable/disable isTieBreakingRound, so if that's true, it will reroute the error messages from normal to the tie breaking round version.
-
 import random
 from time import sleep
 
