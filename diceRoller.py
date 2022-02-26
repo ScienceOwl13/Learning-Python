@@ -53,5 +53,7 @@ else:
     while diceNumRolled != diceQuantity:
         rollDice()
         diceNumRolled += 1
+        print(diceNumRolled)
+
 
 print(f"\nYou rolled: {diceResults}")
